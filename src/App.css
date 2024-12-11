@@ -1,0 +1,129 @@
+@import url('https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,200..1000;1,200..1000&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+:root{
+  --sidebar-width: 260px;
+  --error: #ff0000;
+  --success: #109210;
+  --error-text: #fff;
+  --logoColor: #000;
+}
+[data-theme=light]{
+  --logoColor: #000;
+}
+[data-theme=dark]{
+  --logoColor: #ccc;
+}
+body {
+  margin: 0;
+  font-family: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.layout-with-sidebar{
+  position: relative;
+}
+.layout-with-sidebar .sidebar{
+  position: fixed;
+  width: var(--sidebar-width);
+}
+.layout-with-sidebar .sidebar li a{
+  margin-bottom: .3rem;
+}
+.layout-with-sidebar .sidebar .active a{
+  background-color: var(--fallback-bc,oklch(var(--bc)/0.1));
+}
+.layout-with-sidebar .main-content{
+  padding-left: calc(var(--sidebar-width) + 1rem);
+  padding-right: 1rem;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+}
+
+.layout-with-sidebar .sidebar .menu{
+  /* margin-top: 1rem; */
+}
+.layout-with-sidebar .sidebar .account-info{
+  /* position: absolute; */
+  /* bottom: 0; */
+  /* height: 80px; */
+}
+.layout-with-sidebar .sidebar ul {
+  min-height: calc(100vh - 160px);
+}
+
+.dragContent{
+  position: relative;
+}
+
+.dragIcon{
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 40px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all ease-in-out 0.2s;
+  opacity: 0;
+}
+.dragContent:hover .dragIcon{
+  opacity: 1;
+}
+
+.dragText{
+  /* flex: 1; */
+  width: calc(100% - 25px);
+  text-overflow: ellipsis;
+  overflow: hidden;
+  display: block;
+  white-space: nowrap;
+}
+
+.alert-danger{
+  background-color: var(--error);
+  color: var(--error-text);
+}
+.alert-success{
+  background-color: var(--success);
+  color: var(--error-text);
+}
+
+.toast{
+  text-align: left;
+  white-space: break-spaces;
+}
+.alert{
+  text-align: left;
+  margin-right: 1.5rem;
+}
+
+.pageLoadApi {
+  min-height: calc(100vh - 4.1rem);
+}
+
+.text-decoration-none {
+  text-decoration: none;
+}
+
+
+@media only screen and (max-width: 640px) {
+  .layout-with-sidebar .main-content{
+    padding-left: 1rem;
+    padding-bottom: 100px;
+    padding-top: 80px;
+  }
+  .alert{
+    margin-right: 0;
+  }
+  .btm-nav{
+    z-index: 9999999;
+    /* position: fixed; */
+  }
+  .headerNav {
+    z-index: 9999999;
+    position: fixed;
+  }
+}
