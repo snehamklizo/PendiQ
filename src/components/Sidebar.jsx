@@ -120,9 +120,15 @@ const Sidebar = () => {
                 <div className="dropdown dropdown-end">
                 <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
                     <div className="w-10 rounded-full">
-                    <img
-                        alt="Tailwind CSS Navbar component"
-                        src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" />
+                      {localStorage.getItem('userImage') !== null ? (
+                        <img src={localStorage.getItem('userImage')} alt="Profile" className='border-2 border-primary rounded-full' />
+                      ) : (
+                        <div className="avatar placeholder w-full">
+                            <div className="bg-neutral text-neutral-content w-full rounded-full">
+                                <span className="text-xl">{localStorage.getItem('userName')?.charAt(0)}</span>
+                            </div>
+                        </div>
+                      )}
                     </div>
                 </div>
                 <ul
