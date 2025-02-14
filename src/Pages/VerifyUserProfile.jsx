@@ -21,7 +21,17 @@ const VerifyUserProfile = () => {
         setVerifyActive(true);
         const account = new Account(client);
 
-        const promise = account.createVerification(`${import.meta.env.VITE_APP_LINK}/confirm-email/${confirmCode ? confirmCode : 'xxxx'}`);
+        const appLink = import.meta.env.VITE_APP_LINK;
+        const validHosts = ['localhost', 'cloud.appwrite.io', 'appwrite.io', '*.appwrite.io', 'pendiq.vercel.app'];
+        const url = new URL(appLink);
+        
+        if (!validHosts.some(host => url.host.endsWith(host))) {
+            showToast('Invalid URL host', null, 'danger');
+            setVerifyActive(false);
+            return;
+        }
+
+        const promise = account.createVerification(`${appLink}/confirm-email/${confirmCode ? confirmCode : 'xxxx'}`);
 
         promise.then(function (response) {
             // console.log(response);
